@@ -5,6 +5,10 @@ const port = process.env.port || 3000;
 const morgan = require('morgan');
 const { create } = require('express-handlebars');
 const route = require('./routes/index');
+const db = require('./config/db/index');
+
+// connect db
+db.connect();
 
 // configuration middleware built-in --begin
 app.use(morgan('short'));
