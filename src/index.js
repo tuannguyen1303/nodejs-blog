@@ -4,7 +4,9 @@ const app = express();
 const port = process.env.port || 3000;
 const morgan = require("morgan");
 const { create } = require("express-handlebars");
+const route = require("./routes/index");
 
+// configuration middleware built-in --begin
 app.use(morgan("short"));
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -24,23 +26,10 @@ const hbs = create({
 app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "/resources/views"));
+// configuration middleware built-in --end
 
-app.get("/", (req, res) => {
-  res.render("home");
-});
-
-app.get("/news", (req, res) => {
-  res.render("news");
-});
-
-app.get("/search", (req, res) => {
-  res.render("search");
-});
-
-app.post("/search", (req, res) => {
-  console.log(req.body);
-  res.send("Submit successful");
-});
+// Routes
+route(app);
 
 app.listen(port, () => {
   console.log(`Server is listening on http://localhost:${port}`);
