@@ -1,5 +1,6 @@
 const newsRouter = require('./news');
 const siteRouter = require('./site');
+const coursesRouter = require('./courses');
 
 function route(app) {
     // News routes
@@ -7,6 +8,9 @@ function route(app) {
 
     // Site routes
     app.use('/', siteRouter);
+
+    // Courses routes
+    app.use('/courses', coursesRouter);
 }
 
 module.exports = route;
