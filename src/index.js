@@ -27,6 +27,7 @@ const hbs = create({
     extname: '.hbs',
 });
 
+// configuration view engine for nodeJS application --handlebars
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
